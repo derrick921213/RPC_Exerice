@@ -12,4 +12,7 @@
 
 ### 執行
 - server: `execute.[cmd|sh] server`
-- client: `execute.[cmd|sh] client`
+- client: `execute.[cmd|sh] client '{"ui":"distAll"}'`
+#### UI 介面
+- distAll: 完整介面
+- dist: 簡陋介面
