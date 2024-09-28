@@ -28,6 +28,8 @@ class Client:
         self.server = None
         self.login_user = ""
         self.retry_count = 0
+        (self.connect_address, self.port, self.ui) = Parser(
+            self.args).connect_address()
         self.connect_to_server()
 
     def reload_html(self):
@@ -51,7 +53,7 @@ class Client:
 
     def connect_to_server(self):
         """嘗試連接到伺服器，並設置自動重試機制"""
-        connect_address, port = Parser(self.args).connect_address()
+        connect_address, port = self.connect_address, self.port
         try:
             print(f"Connecting to server at {connect_address}:{port}...")
             self.server = xmlrpc.client.ServerProxy(
@@ -234,7 +236,7 @@ def on_loaded(window):
 def client(args: list[str]):
     api = Client(args)
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    index_path = os.path.join(current_dir, 'dist', 'index.html')
+    index_path = os.path.join(current_dir, api.ui, 'index.html')
     window = webview.create_window(
         Client.TITLE, index_path, js_api=api, fullscreen=True)
     webview.start(on_loaded, window)

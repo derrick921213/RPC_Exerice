@@ -12,7 +12,9 @@ class Parser:
                 host = data['host']
             if 'port' in data:
                 port = data['port']
-        return (host, port)
+            if 'ui' in data:
+                ui = data['ui']
+        return (host, port, ui)
 
     def get_data(self) -> tuple[dict, dict]:
         DATA = "DATA"
