@@ -194,7 +194,7 @@ class Server:
 
 def server(args: list[str]):
     service: Server = Server(args)
-    (connect_address, port) = Parser(args).connect_address()
+    (connect_address, port, ui) = Parser(args).connect_address()
     server = ThreadXMLRPCServer((connect_address, int(port)), allow_none=True)
     server.register_instance(service)
     server.register_introspection_functions()
