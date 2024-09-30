@@ -5,6 +5,7 @@ class Parser:
     def connect_address(self):
         host: str = 'localhost'
         port: str = "50051"
+        ui: str = "dist"
         if len(self.args) == 1:
             import json
             data: dict[str, str] = json.loads(self.args[0])
